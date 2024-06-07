@@ -17,11 +17,11 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Install newman
-      run: npm install -g newman
+      run: npm install -g newman newman-reporter-htmlextra
 
     - name: Run Postman Collection
       run: |
-        newman run partie2-store.postman_collection.json -d orders.json --reporters=cli,htmlextra
+        newman run partie2-store.postman_collection.json -d orders.json --reporters=cli,htmlextra --reporter-htmlextra-export newman/report.html
 
     - name: Report
       uses: actions/upload-artifact@v4
