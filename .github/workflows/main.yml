@@ -1,0 +1,24 @@
+name: Run Postman Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  postman-tests:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install newman
+      run: npm install -g newman
+
+    - name: Run Postman Collection
+      run: |
+        newman run partie2-store.postman_collection.json -d orders.json --reporters=cli,htmlextra
