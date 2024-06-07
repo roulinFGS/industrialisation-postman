@@ -22,3 +22,11 @@ jobs:
     - name: Run Postman Collection
       run: |
         newman run partie2-store.postman_collection.json -d orders.json --reporters=cli,htmlextra
+
+    - name: Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: html_report
+        path: ./newman/*.html
+          
+        
